@@ -1,0 +1,32 @@
+{
+   "name" : "{{.Name}}",
+   "description" : "{{.Description}}",
+   "key" : "{{.Key}}",
+   "vendor" : {
+      "name" : "{{.VendorName}}",
+      "url" : "{{.VendorURL}}"
+   },
+   "links" : {
+      "self" : "http://{{.Host}}/capabilities",
+      "homepage" : "{{.Host}}"
+   },
+   "capabilities" : {
+      "hipchatApiConsumer" : {
+         {{if .AvatarURL}}"avatar": {
+           "url": "{{.AvatarURL}}"{{if .Avatar2xURL}},
+           "url@2x": "{{.Avatar2xURL}}"{{end}}
+         },{{end}}
+         {{if .FromName}}"fromName": {{.FromName}},{{end}}
+         "scopes" : [{{range $index,$scope := .Scopes}}{{if $index}},{{end}}
+           "{{$scope}}"{{end}}
+         ]
+
+      },
+      "installable" : {
+         "allowRoom" : {{.AllowRoom}},
+         "installedUrl" : "http://{{.Host}}/install",
+         "uninstalledUrl": "http://{{.Host}}/uninstall",
+         "allowGlobal" : {{.AllowGlobal}}
+      }
+   }
+}

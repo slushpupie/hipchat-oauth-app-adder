@@ -1,0 +1,49 @@
+<html>
+  <body>
+    <div>
+      <form method="POST">
+        <table>
+          <tr><td>HipChat Server: </td><td><input type="text" name="server_name" value="www.hipchat.com"></td></tr>
+          <tr><td>Name: </td><td><input type="text" name="name" value="{{.Values.Name}}"></td></tr>
+          <tr><td>Description:</td><td><input type="text" name="description" value="{{.Values.Description}}"></td></tr>
+          <tr><td>Avatar URL:</td><td><input type="text" name="avatar_url" value="{{.Values.AvatarURL}}"></td></tr>
+          <tr><td>Avatar 2x URL:</td><td><input type="text" name="avatar2x_url" value="{{.Values.Avatar2xURL}}"></td></tr>
+          <tr><td>From Name:</td><td><input type="text" name="from_name" value="{{.Values.FromName}}"></td></tr>
+          <tr><td>Key:</td><td><input type="text" name="key" value="{{.Values.Key}}"></td></tr>
+          <tr><td>OAuth Scopes: </td><td><select multiple name="scopes">
+                                  <option value="admin_group">admin_group - Perform group administrative tasks"</option>
+                                  <option value="admin_room">admin_room - Perform room administrative tasks"</option>
+                                  <option value="manage_rooms">manage_rooms - Create, update, and remove rooms</option>
+                                  <option value="send_message">send_message - Send private one-on-one messages</option>
+                                  <option value="send_notification">send_notifiation - Send room notifications</option>
+                                  <option value="view_group">view_group - View users, rooms, and other group information</option>
+                                  <option value="view_messages">view_messages - View messages from chat rooms and private chats you have access to</option>
+                                  <option value="view_room">view_room - View room information and participants, but not history</option>
+                                </select>
+              </td></tr>
+          <tr><td>Allow room:</td><td><input type="checkbox" name="allow_room" value="true" {{if .Values.AllowRoom}}checked{{end}}></td></tr>
+          <tr><td>Allow global:</td><td><input type="checkbox" name="allow_global" value="true" {{if .Values.AllowGlobal}}checked{{end}}></td></tr>
+          <tr><td>Vendor Name:</td><td><input type="text" name="vendor_name" value="{{.Values.VendorName}}"></td></tr>
+          <tr><td>Vendor URL:</td><td><input type="text" name="vendor_url" value="{{.Values.VendorURL}}"></td></tr>
+
+          <tr><td><input type="submit"></td><td></td></tr>
+        </table>
+      </form>
+    </div>
+    <div>
+      {{if .InstallURL}}
+      <a href="{{.InstallURL}}">Install it!</a>
+      {{end}}
+    </div>
+    <div>
+      <pre>
+{{.Json}}
+      </pre>
+    </div>
+    <div>
+      <pre>
+{{.Data}}
+      </pre>
+    </div>
+  </body>
+</html>
